@@ -3,13 +3,18 @@ import time
 import subprocess
 import shlex
 import things
+import os
+import sqlite3
+
+THINGS_SQLITE_PATH="~/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/ThingsData-GXN1B/Things Database.thingsdatabase/main.sqlite"
 
 def timez():
     return time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime())
 
 def get_things_today_tasks(index=0, complete_task=False):
+    DB = os.path.expanduser(THINGS_SQLITE_PATH)
     mytasks = []
-    tasks = things.today()
+    tasks = things.today(filepath=DB)
     for task in tasks:
         for tag in task.get('tags', []):
             mytasks.append((tag, task['title'], things.link(task['uuid'])))

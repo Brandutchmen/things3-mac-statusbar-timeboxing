@@ -20,7 +20,7 @@ OPTIONS = {
         "CFBundleShortVersionString": VERSION,
         "LSUIElement": True,
     },
-    "packages": ["rumps", "paramiko", "cffi"],
+    "packages": ["rumps", "paramiko", "cffi", "things", "sqlite3"],
 }
 
 setup(
